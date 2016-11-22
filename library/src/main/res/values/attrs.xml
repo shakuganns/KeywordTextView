@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--AlmightyTextView-->
+    <declare-styleable name="AlmightyTextView">
+        <attr name="keyword" format="string|reference"/>
+        <attr name="keyword_color" format="color|reference"/>
+        <attr name="has_underline" format="boolean"/>
+    </declare-styleable>
+
+</resources>
