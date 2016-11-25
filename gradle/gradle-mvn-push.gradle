@@ -25,6 +25,9 @@ bintray {
         publish = true
         publicDownloadNumbers = true
         version {
+            name = VERSION_NAME
+            desc = '0.1.0 -- beta'
+            released  = new Date()
             desc = POM_DESCRIPTION
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
