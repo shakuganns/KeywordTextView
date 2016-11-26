@@ -2,14 +2,16 @@
 A Textview that allows you to highlight the key.
 
 # Screenshot
-![](README/art/ss1.png)
+[![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss1.png)](https://github.com/shakuganns/KeywordTextView)
 
 URL and 6 to 18 digit numbers have the same effect.
-![](README/art/ss2.png)
+[![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss1.png)](https://github.com/shakuganns/KeywordTextView)
 
 # Usage
 * Gradle
- `compile 'me.imirai:keywordtextview:0.1.0'`
+```
+compile 'me.imirai:keywordtextview:0.1.0'
+```
 * Maven
 ```
 <dependency>
@@ -34,10 +36,10 @@ URL and 6 to 18 digit numbers have the same effect.
 ```
 
 *  Java
-You can do what you want to do by setting up the listener.
 ```
 textView.setTextWithKeyword("A pretty girl! So pretty！","pretty,girl");
 
+//You can do what you want to do by setting up the listener.
 textView.setOnKeywordClickListener(new KeywordTextView.OnKeywordClickListener() {
             @Override
             public void onClick(View view, String keyword) {
