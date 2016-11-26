@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
                         keyword,Toast.LENGTH_SHORT).show();
             }
         });
-        textView.setTextWithKeyword("A pretty girl! So pretty！","pretty,girl");
+        textView.setTextWithKeyword("A pretty girl! So pretty！https://www.google.com 0000000","pretty,girl");
     }
 }

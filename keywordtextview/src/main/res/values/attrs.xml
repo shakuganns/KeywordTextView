@@ -2,7 +2,7 @@
 <resources>
 
     <!--AlmightyTextView-->
-    <declare-styleable name="AlmightyTextView">
+    <declare-styleable name="KeywordTextView">
         <attr name="keyword" format="string|reference"/>
         <attr name="keyword_color" format="color|reference"/>
         <attr name="has_underline" format="boolean"/>

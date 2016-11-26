@@ -55,10 +55,10 @@ public class KeywordTextView extends TextView {
     }
 
     private void init(Context context,AttributeSet attrs, int defStyleAttr) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.AlmightyTextView,defStyleAttr,0);
-        KEYWORD = typedArray.getString(R.styleable.AlmightyTextView_keyword);
-        KEYWORD_COLOR = typedArray.getColor(R.styleable.AlmightyTextView_keyword_color,Color.BLUE);
-        HAS_UNDERLINE = typedArray.getBoolean(R.styleable.AlmightyTextView_has_underline,true);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.KeywordTextView,defStyleAttr,0);
+        KEYWORD = typedArray.getString(R.styleable.KeywordTextView_keyword);
+        KEYWORD_COLOR = typedArray.getColor(R.styleable.KeywordTextView_keyword_color,Color.BLUE);
+        HAS_UNDERLINE = typedArray.getBoolean(R.styleable.KeywordTextView_has_underline,true);
         typedArray.recycle();
         setTextWithKeyword(getText(),KEYWORD);
         setMovementMethod(LinkMovementMethod.getInstance());
