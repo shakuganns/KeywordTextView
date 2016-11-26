@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
                         keyword,Toast.LENGTH_SHORT).show();
             }
         });
-        textView.setTextWithKeyword("fuck you! fuck","fuck,you");
+        textView.setTextWithKeyword("A pretty girl! So pretty！","pretty,girl");
     }
 }
