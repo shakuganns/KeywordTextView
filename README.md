@@ -5,6 +5,7 @@ A Textview that allows you to highlight the key.
 [![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss1.png)](https://github.com/shakuganns/KeywordTextView)
 
 URL and 6 to 18 digit numbers have the same effect.
+
 [![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss2.png)](https://github.com/shakuganns/KeywordTextView)
 
 ## Usage
