@@ -1,13 +1,13 @@
 # KeywordTextView
 A Textview that allows you to highlight the key.
 
-# Screenshot
+## Screenshot
 [![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss1.png)](https://github.com/shakuganns/KeywordTextView)
 
 URL and 6 to 18 digit numbers have the same effect.
-[![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss1.png)](https://github.com/shakuganns/KeywordTextView)
+[![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss2.png)](https://github.com/shakuganns/KeywordTextView)
 
-# Usage
+## Usage
 * Gradle
 ```
 compile 'me.imirai:keywordtextview:0.1.0'
@@ -18,11 +18,11 @@ compile 'me.imirai:keywordtextview:0.1.0'
   <groupId>me.imirai</groupId>
   <artifactId>keywordtextview</artifactId>
   <version>0.1.0</version>
-  <type>pom</type>
+  <type>arr</type>
 </dependency> 
 ```
 
-# Sample
+## Sample
 * Xml
 ```
 <me.imirai.library.KeywordTextView
@@ -35,7 +35,7 @@ compile 'me.imirai:keywordtextview:0.1.0'
         android:text="Hello World!" />
 ```
 
-*  Java
+* Java
 ```
 textView.setTextWithKeyword("A pretty girl! So pretty！","pretty,girl");
 
@@ -49,7 +49,7 @@ textView.setOnKeywordClickListener(new KeywordTextView.OnKeywordClickListener() 
         });
 ```
 
-# License
+## License
 ```
 Copyright 2016 Shakuganns
 
@@ -57,7 +57,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+   http:www.apache.org_licenses_LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
