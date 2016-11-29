@@ -1,5 +1,5 @@
 # KeywordTextView
-A Textview that allows you to highlight the key.
+A Textview that allows you to highlight the keyword.
 
 ## Screenshot
 [![screen](https://github.com/shakuganns/KeywordTextView/blob/master/art/ss1.png)](https://github.com/shakuganns/KeywordTextView)
@@ -50,9 +50,10 @@ textView.setOnKeywordClickListener(new KeywordTextView.OnKeywordClickListener() 
         });
 ```
 
-## License
-```
-Copyright 2016 Shakuganns
+License
+--------
+
+Copyright 2016 Shakugan.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -65,4 +66,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-```
