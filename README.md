@@ -11,14 +11,14 @@ URL and 6 to 18 digit numbers have the same effect.
 ## Usage
 * Gradle
 ```
-compile 'me.imirai:keywordtextview:0.1.0'
+compile 'me.imirai:keywordtextview:0.1.1'
 ```
 * Maven
 ```
 <dependency>
   <groupId>me.imirai</groupId>
   <artifactId>keywordtextview</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <type>arr</type>
 </dependency> 
 ```
@@ -27,13 +27,17 @@ compile 'me.imirai:keywordtextview:0.1.0'
 * Xml
 ```
 <me.imirai.library.KeywordTextView
-        app:keyword="hello,world"
-        app:keyword_color="@color/colorPrimary"
-        app:has_underline="true"
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    app:keyword="hello,world"
+    app:keyword_color="@color/colorPrimary"
+    app:has_underline="true"
+    app:url_highlight="true"
+    app:num_highlight="true"
+    app:url_color="@color/colorPrimaryDark"
+    app:num_color="@color/colorAccent"
+    android:id="@+id/text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello World!" />
 ```
 
 * Java

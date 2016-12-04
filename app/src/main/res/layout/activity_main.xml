@@ -17,10 +17,11 @@
         app:has_underline="true"
         app:url_highlight="true"
         app:num_highlight="true"
-        app:url_color="@color/colorPrimary"
-        app:num_color="@color/colorPrimary"
+        app:url_color="@color/colorPrimaryDark"
+        app:num_color="@color/colorAccent"
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
 </RelativeLayout>
