@@ -5,7 +5,11 @@
     <declare-styleable name="KeywordTextView">
         <attr name="keyword" format="string|reference"/>
         <attr name="keyword_color" format="color|reference"/>
+        <attr name="url_color" format="color|reference"/>
+        <attr name="num_color" format="color|reference"/>
         <attr name="has_underline" format="boolean"/>
+        <attr name="url_highlight" format="boolean"/>
+        <attr name="num_highlight" format="boolean"/>
     </declare-styleable>
 
 </resources>

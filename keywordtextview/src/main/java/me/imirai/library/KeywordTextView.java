@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -42,7 +43,11 @@ public class KeywordTextView extends TextView {
 
     private static String KEYWORD = null;
     private static int KEYWORD_COLOR = Color.BLUE;
+    private static int URL_COLOR = Color.BLUE;
+    private static int NUM_COLOR = Color.BLUE;
     private static boolean HAS_UNDERLINE = true;
+    private static boolean URL_HIGHLIGHT = false;
+    private static boolean NUM_HIGHLIGHT = false;
 
     private SpannableString spannableString;
 
@@ -73,7 +78,11 @@ public class KeywordTextView extends TextView {
         TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.KeywordTextView,defStyleAttr,0);
         KEYWORD = typedArray.getString(R.styleable.KeywordTextView_keyword);
         KEYWORD_COLOR = typedArray.getColor(R.styleable.KeywordTextView_keyword_color,Color.BLUE);
+        URL_COLOR = typedArray.getColor(R.styleable.KeywordTextView_url_color,Color.BLUE);
+        NUM_COLOR = typedArray.getColor(R.styleable.KeywordTextView_num_color,Color.BLUE);
         HAS_UNDERLINE = typedArray.getBoolean(R.styleable.KeywordTextView_has_underline,true);
+        URL_HIGHLIGHT = typedArray.getBoolean(R.styleable.KeywordTextView_url_highlight,false);
+        NUM_HIGHLIGHT = typedArray.getBoolean(R.styleable.KeywordTextView_num_highlight,false);
         typedArray.recycle();
         setTextWithKeyword(getText(),KEYWORD);
         setMovementMethod(LinkMovementMethod.getInstance());
@@ -100,7 +109,7 @@ public class KeywordTextView extends TextView {
                 @Override
                 public void updateDrawState(TextPaint ds) {
                     super.updateDrawState(ds);
-                    ds.setColor(KEYWORD_COLOR);
+                    ds.setColor(NUM_COLOR);
                     ds.setUnderlineText(HAS_UNDERLINE);
                 }
             }, text.indexOf(matcher.group()), text.indexOf(matcher.group()) + matcher.group().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -143,7 +152,7 @@ public class KeywordTextView extends TextView {
                 @Override
                 public void updateDrawState(TextPaint ds) {
                     super.updateDrawState(ds);
-                    ds.setColor(KEYWORD_COLOR);
+                    ds.setColor(URL_COLOR);
                     ds.setUnderlineText(HAS_UNDERLINE);
                 }
             }, text.indexOf(matcher.group()), text.indexOf(matcher.group()) + matcher.group().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -192,8 +201,12 @@ public class KeywordTextView extends TextView {
                 }
             }
         }
-        findUrl();
-        findNum();
+        if (URL_HIGHLIGHT) {
+            findUrl();
+        }
+        if (NUM_HIGHLIGHT) {
+            findNum();
+        }
         setText(spannableString);
     }
 
