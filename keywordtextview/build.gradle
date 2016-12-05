@@ -6,7 +6,7 @@ android {
     defaultConfig {
         minSdkVersion project.minSdk
         targetSdkVersion project.sdk
-        versionCode 2
+        versionCode 3
         versionName project.libraryVersion
 
     }

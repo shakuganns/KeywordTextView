@@ -27,6 +27,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -41,13 +42,18 @@ import java.util.regex.Pattern;
 
 public class KeywordTextView extends TextView {
 
-    private static String KEYWORD = null;
-    private static int KEYWORD_COLOR = Color.BLUE;
-    private static int URL_COLOR = Color.BLUE;
-    private static int NUM_COLOR = Color.BLUE;
-    private static boolean HAS_UNDERLINE = true;
-    private static boolean URL_HIGHLIGHT = false;
-    private static boolean NUM_HIGHLIGHT = false;
+    private String keywords;
+    private int keywordsColor;
+    private int urlColor;
+    private int numColor;
+    private boolean keywordsUnderline;
+    private boolean urlUnderline;
+    private boolean numUnderline;
+    private boolean urlHighlight;
+    private boolean numHighlight;
+    private float keywordsRelativeSize;
+    private float urlRelativeSize;
+    private float numRelativeSize;
 
     private SpannableString spannableString;
 
@@ -76,15 +82,25 @@ public class KeywordTextView extends TextView {
 
     private void init(Context context,AttributeSet attrs, int defStyleAttr) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.KeywordTextView,defStyleAttr,0);
-        KEYWORD = typedArray.getString(R.styleable.KeywordTextView_keyword);
-        KEYWORD_COLOR = typedArray.getColor(R.styleable.KeywordTextView_keyword_color,Color.BLUE);
-        URL_COLOR = typedArray.getColor(R.styleable.KeywordTextView_url_color,Color.BLUE);
-        NUM_COLOR = typedArray.getColor(R.styleable.KeywordTextView_num_color,Color.BLUE);
-        HAS_UNDERLINE = typedArray.getBoolean(R.styleable.KeywordTextView_has_underline,true);
-        URL_HIGHLIGHT = typedArray.getBoolean(R.styleable.KeywordTextView_url_highlight,false);
-        NUM_HIGHLIGHT = typedArray.getBoolean(R.styleable.KeywordTextView_num_highlight,false);
+        keywords = typedArray.getString(R.styleable.KeywordTextView_keyword);
+
+        keywordsColor = typedArray.getColor(R.styleable.KeywordTextView_keyword_color,Color.BLUE);
+        urlColor = typedArray.getColor(R.styleable.KeywordTextView_url_color,Color.BLUE);
+        numColor = typedArray.getColor(R.styleable.KeywordTextView_num_color,Color.BLUE);
+
+        keywordsUnderline = typedArray.getBoolean(R.styleable.KeywordTextView_keywords_underline,true);
+        urlUnderline = typedArray.getBoolean(R.styleable.KeywordTextView_url_underline,true);
+        numUnderline = typedArray.getBoolean(R.styleable.KeywordTextView_num_underline,true);
+
+        urlHighlight = typedArray.getBoolean(R.styleable.KeywordTextView_url_highlight,false);
+        numHighlight = typedArray.getBoolean(R.styleable.KeywordTextView_num_highlight,false);
+
+        keywordsRelativeSize = typedArray.getFloat(R.styleable.KeywordTextView_keywords_relativeSize,1.0f);
+        urlRelativeSize = typedArray.getFloat(R.styleable.KeywordTextView_url_relativeSize,1.0f);
+        numRelativeSize = typedArray.getFloat(R.styleable.KeywordTextView_num_relativeSize,1.0f);
+
         typedArray.recycle();
-        setTextWithKeyword(getText(),KEYWORD);
+        setTextWithKeyword(getText(),keywords);
         setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -100,6 +116,8 @@ public class KeywordTextView extends TextView {
             flagString = flagString.replaceFirst(matcher.group(),s);
             Log.i("flagString",flagString);
             String text = spannableString.toString();
+            spannableString.setSpan(new RelativeSizeSpan(numRelativeSize), flagString.indexOf(s),
+                    flagString.indexOf(s) + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableString.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
@@ -109,8 +127,8 @@ public class KeywordTextView extends TextView {
                 @Override
                 public void updateDrawState(TextPaint ds) {
                     super.updateDrawState(ds);
-                    ds.setColor(NUM_COLOR);
-                    ds.setUnderlineText(HAS_UNDERLINE);
+                    ds.setColor(numColor);
+                    ds.setUnderlineText(numUnderline);
                 }
             }, text.indexOf(matcher.group()), text.indexOf(matcher.group()) + matcher.group().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             matcher = numPattern.matcher(flagString);
@@ -126,7 +144,6 @@ public class KeywordTextView extends TextView {
         String flagString = spannableString.toString();
         Matcher matcher = urlPattern.matcher(spannableString);
         boolean find = matcher.find();
-        int k = 0;
         while (find) {
             String s = "";
             final String url = matcher.group();
@@ -135,6 +152,8 @@ public class KeywordTextView extends TextView {
             }
             flagString = flagString.replaceFirst(matcher.group(),s);
             String text = spannableString.toString();
+            spannableString.setSpan(new RelativeSizeSpan(urlRelativeSize), flagString.indexOf(s),
+                    flagString.indexOf(s) + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableString.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
@@ -152,8 +171,8 @@ public class KeywordTextView extends TextView {
                 @Override
                 public void updateDrawState(TextPaint ds) {
                     super.updateDrawState(ds);
-                    ds.setColor(URL_COLOR);
-                    ds.setUnderlineText(HAS_UNDERLINE);
+                    ds.setColor(urlColor);
+                    ds.setUnderlineText(urlUnderline);
                 }
             }, text.indexOf(matcher.group()), text.indexOf(matcher.group()) + matcher.group().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             matcher = urlPattern.matcher(flagString);
@@ -167,7 +186,7 @@ public class KeywordTextView extends TextView {
      * @param keyword 需要添加超链接的关键字;多个关键字用,隔开  如："fuck,shit,……"
      */
 
-    public void setTextWithKeyword(CharSequence text,CharSequence keyword) {
+    public void setTextWithKeyword(CharSequence text, final CharSequence keyword) {
         if (text == null) {
             return;
         } else {
@@ -182,6 +201,8 @@ public class KeywordTextView extends TextView {
                     flag = flag+"^";
                 }
                 while(flagString.contains(s)) {
+                    spannableString.setSpan(new RelativeSizeSpan(keywordsRelativeSize), flagString.indexOf(s),
+                            flagString.indexOf(s) + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     spannableString.setSpan(new ClickableSpan() {
                         @Override
                         public void onClick(View widget) {
@@ -193,21 +214,53 @@ public class KeywordTextView extends TextView {
                         @Override
                         public void updateDrawState(TextPaint ds) {
                             super.updateDrawState(ds);
-                            ds.setColor(KEYWORD_COLOR);
-                            ds.setUnderlineText(HAS_UNDERLINE);
+                            ds.setColor(keywordsColor);
+                            ds.setUnderlineText(keywordsUnderline);
                         }
                     }, flagString.indexOf(s), flagString.indexOf(s) + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     flagString = flagString.replaceFirst(s,flag);
                 }
             }
         }
-        if (URL_HIGHLIGHT) {
+        if (urlHighlight) {
             findUrl();
         }
-        if (NUM_HIGHLIGHT) {
+        if (numHighlight) {
             findNum();
         }
         setText(spannableString);
+    }
+
+    public SpannableString getSpannableText() {
+        return spannableString;
+    }
+
+    public int getKeywordsColor() {
+        return keywordsColor;
+    }
+
+    public int getNumColor() {
+        return numColor;
+    }
+
+    public int getUrlColor() {
+        return urlColor;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public float getKeywordsRelativeSize() {
+        return keywordsRelativeSize;
+    }
+
+    public float getNumRelativeSize() {
+        return numRelativeSize;
+    }
+
+    public float getUrlRelativeSize() {
+        return urlRelativeSize;
     }
 
     public void setOnKeywordClickListener(OnKeywordClickListener listener) {

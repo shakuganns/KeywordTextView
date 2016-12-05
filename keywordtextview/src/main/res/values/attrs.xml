@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--AlmightyTextView-->
+    <!--KeywordTextView-->
     <declare-styleable name="KeywordTextView">
         <attr name="keyword" format="string|reference"/>
         <attr name="keyword_color" format="color|reference"/>
         <attr name="url_color" format="color|reference"/>
         <attr name="num_color" format="color|reference"/>
-        <attr name="has_underline" format="boolean"/>
         <attr name="url_highlight" format="boolean"/>
         <attr name="num_highlight" format="boolean"/>
+        <attr name="url_underline" format="boolean"/>
+        <attr name="num_underline" format="boolean"/>
+        <attr name="keywords_underline" format="boolean"/>
+        <attr name="keywords_relativeSize" format="float"/>
+        <attr name="url_relativeSize" format="float"/>
+        <attr name="num_relativeSize" format="float"/>
+        <!--<attr name="keywords_clickable" format="boolean"/>-->
+        <!--<attr name="url_clickable" format="boolean"/>-->
+        <!--<attr name="num_clickable" format="boolean"/>-->
     </declare-styleable>
 
 </resources>
