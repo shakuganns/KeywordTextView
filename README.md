@@ -11,29 +11,35 @@ URL and 6 to 18 digit numbers have the same effect.
 ## Usage
 * Gradle
 ```
-compile 'me.imirai:keywordtextview:0.1.1'
+compile 'me.imirai:keywordtextview:0.1.2'
 ```
 * Maven
 ```
 <dependency>
   <groupId>me.imirai</groupId>
   <artifactId>keywordtextview</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <type>arr</type>
 </dependency> 
 ```
 
 ## Sample
+Two keywords separated by a comma.
+Relative size is a multiple of the default size.
 * Xml
 ```
 <me.imirai.library.KeywordTextView
     app:keyword="hello,world"
-    app:keyword_color="@color/colorPrimary"
-    app:has_underline="true"
+    app:keyword_color="@color/colorAccent"
+    app:keywords_underline="false"
+    app:num_underline="false"
     app:url_highlight="true"
     app:num_highlight="true"
+    app:keywords_relativeSize="2.0"
+    app:url_relativeSize="1.4"
+    app:num_relativeSize="0.8"
     app:url_color="@color/colorPrimaryDark"
-    app:num_color="@color/colorAccent"
+    app:num_color="@color/colorPrimary"
     android:id="@+id/text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
